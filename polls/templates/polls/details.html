@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Details</title>
+  </head>
+  <body>
+    <hl>{{ques.question_t}}</h1>
+    {% if error_message %}
+    <p><strong>{{error_message}}</strong></p>
+    {% endif %}
+    <form action= "{% url 'polls:vote' ques.id %}" method="post">
+      {% csrf_token %}
+      {% for ch in ques.choice_set.all %}
+      <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{ch.id}}"/>
+      <label for="choice{{forloop.counter}}">{{ch.choice_t}}</label><br/>
+      {% endfor %}
+      <input type="submit" value="Vote"/>
+    </form>
+  </body>
+</html>

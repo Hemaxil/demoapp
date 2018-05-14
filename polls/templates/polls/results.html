@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Results page</title>
+  </head>
+  <body>
+    <h1>{{question.question_t}}</h1>
+    {%for ch in question.choice_set.all%}
+      <li>{{ ch.choice_t }} -- {{ ch.votes }} vote{{ ch.votes|pluralize }}</li>
+    {% endfor %}
+
+  </body>
+</html>
